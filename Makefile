@@ -272,17 +272,21 @@ plugins: $(ip-y) $(op-y)
 man: $(man1) $(man7)
 
 install-main: main
-	$(INSTALL) -m755 $(bindir) cmus cmus-remote
+	$(INSTALL) -m755 -D -t $(DESTDIR)$(bindir) cmus
+	$(INSTALL) -m755 -D -t $(DESTDIR)$(bindir) cmus-remote
 
 install-plugins: plugins
-	$(INSTALL) -m755 $(libdir)/cmus/ip $(ip-y)
-	$(INSTALL) -m755 $(libdir)/cmus/op $(op-y)
+	$(INSTALL) -m755 -d $(DESTDIR)$(libdir)/cmus/ip
+	$(INSTALL) -m755 -d $(DESTDIR)$(libdir)/cmus/op
+	$(INSTALL) -m755 -t $(DESTDIR)$(libdir)/cmus/ip $(ip-y)
+	$(INSTALL) -m755 -t $(DESTDIR)$(libdir)/cmus/op $(op-y)
 
 install-data: man
-	$(INSTALL) -m644 $(datadir)/cmus $(data)
-	$(INSTALL) -m644 $(mandir)/man1 $(man1)
-	$(INSTALL) -m644 $(mandir)/man7 $(man7)
-	$(INSTALL) -m755 $(exampledir) cmus-status-display
+	$(INSTALL) -m644 -d $(DESTDIR)$(datadir)/cmus/data
+	$(INSTALL) -m644 -t $(DESTDIR)$(datadir)/cmus $(data)
+	$(INSTALL) -m644 -D -t $(DESTDIR)$(mandir)/man1 $(man1)
+	$(INSTALL) -m644 -D -t $(DESTDIR)$(mandir)/man7 $(man7)
+	$(INSTALL) -m755 -D -t $(DESTDIR)$(exampledir) cmus-status-display
 
 install: all install-main install-plugins install-data
 
