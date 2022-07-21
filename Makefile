@@ -283,7 +283,7 @@ install-plugins: plugins
 
 install-data: man
 	$(INSTALL) -m644 -d $(DESTDIR)$(datadir)/cmus
-	$(INSTALL) -m644 -t $(DESTDIR)$(datadir)/cmus $(data)
+	$(INSTALL) -m644 -D -t $(DESTDIR)$(datadir)/cmus $(data)
 	$(INSTALL) -m644 -D -t $(DESTDIR)$(mandir)/man1 $(man1)
 	$(INSTALL) -m644 -D -t $(DESTDIR)$(mandir)/man7 $(man7)
 	$(INSTALL) -m755 -D -t $(DESTDIR)$(exampledir) cmus-status-display
