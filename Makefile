@@ -264,7 +264,8 @@ quiet_cmd_ttman = MAN    $@
 
 data		= $(wildcard data/*)
 
-clean		+= *.o ip/*.lo op/*.lo ip/*.so op/*.so *.lo cmus libcmus.a cmus.def cmus.base cmus.exp cmus-remote Doc/*.o Doc/ttman Doc/*.1 Doc/*.7 .install.log
+clean		+= *.o ip/*.lo op/*.lo ip/*.so op/*.so *.lo cmus libcmus.a cmus.def cmus.base cmus.exp cmus-remote Doc/*.o Doc/ttman Doc/*.1 Doc/*.7 .
+.log
 distclean	+= .version config.mk config/*.h tags
 
 main: cmus cmus-remote
@@ -272,17 +273,17 @@ plugins: $(ip-y) $(op-y)
 man: $(man1) $(man7)
 
 install-main: main
-	$(INSTALL) -m755 $(bindir) cmus cmus-remote
+	$(INSTALL) -D -m755 $(bindir) cmus cmus-remote
 
 install-plugins: plugins
-	$(INSTALL) -m755 $(libdir)/cmus/ip $(ip-y)
-	$(INSTALL) -m755 $(libdir)/cmus/op $(op-y)
+	$(INSTALL) -d -m755 $(libdir)/cmus/ip $(ip-y)
+	$(INSTALL) -d -m755 $(libdir)/cmus/op $(op-y)
 
 install-data: man
-	$(INSTALL) -m644 $(datadir)/cmus $(data)
-	$(INSTALL) -m644 $(mandir)/man1 $(man1)
-	$(INSTALL) -m644 $(mandir)/man7 $(man7)
-	$(INSTALL) -m755 $(exampledir) cmus-status-display
+	$(INSTALL) -D -m644 $(datadir)/cmus $(data)
+	$(INSTALL) -D -m644 $(mandir)/man1 $(man1)
+	$(INSTALL) -D -m644 $(mandir)/man7 $(man7)
+	$(INSTALL) -D -m755 $(exampledir) cmus-status-display
 
 install: all install-main install-plugins install-data
 
