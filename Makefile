@@ -272,7 +272,8 @@ plugins: $(ip-y) $(op-y)
 man: $(man1) $(man7)
 
 install-main: main
-	$(INSTALL) -D -m755 $(bindir) cmus cmus-remote
+	$(INSTALL) -D -m755 $(bindir) cmus
+	$(INSTALL) -D -m755 $(bindir) cmus-remote
 
 install-plugins: plugins
 	$(INSTALL) -d -m755 $(libdir)/cmus/ip $(ip-y)
